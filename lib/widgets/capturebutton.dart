@@ -4,7 +4,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CaptureButton extends StatelessWidget {
   final Function onClick;
-  const CaptureButton({Key? key, required this.onClick});
+  final String title;
+  final bool enabled;
+  const CaptureButton({Key? key, required this.onClick, this.enabled = true, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,11 @@ class CaptureButton extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 5.w),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            backgroundColor: const Color.fromRGBO(95, 105, 199, 1)),
-        child: const TextWidget(
-          value: "Verify",
+            backgroundColor: enabled
+                ? const Color.fromRGBO(95, 105, 199, 1)
+                : Color.fromRGBO(191, 191, 191, 1)),
+        child:  TextWidget(
+          value: title,
           color: Colors.white,
         ));
   }

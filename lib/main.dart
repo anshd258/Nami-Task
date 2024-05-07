@@ -1,9 +1,14 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:nami_app/core/approute.dart';
 import 'package:nami_app/pages/homepage.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-void main() {
+late List<CameraDescription> cameras;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  cameras = await availableCameras();
   runApp(const MyApp());
 }
 

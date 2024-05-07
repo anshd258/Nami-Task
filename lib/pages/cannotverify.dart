@@ -2,29 +2,29 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:nami_app/main.dart';
 import 'package:nami_app/widgets/capturebutton.dart';
+import 'package:nami_app/widgets/outlinedbutton.dart';
 import 'package:nami_app/widgets/textbutton.dart';
 import 'package:nami_app/widgets/textwidget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class SelfieScreen extends StatefulWidget {
-  static const selfieScreenRoute = "/selfie";
-  const SelfieScreen({Key? key});
+class CannotVerify extends StatefulWidget {
+  static const cannotVerify = "/cannotverify";
+  const CannotVerify({Key? key}) : super(key: key);
 
   @override
-  State<SelfieScreen> createState() => _SelfieScreenState();
+  State<CannotVerify> createState() => _CannotVerifyState();
 }
 
-class _SelfieScreenState extends State<SelfieScreen> {
+class _CannotVerifyState extends State<CannotVerify> {
   XFile? _picture;
+  int reTakeCount = 0;
   bool takePicture = false;
   late CameraController _controller;
-  bool verified = false;
+  bool unVerified = false;
   late Future<void> _initializeControllerFuture;
   double _progressValue = 0.0;
   int _seconds = 0;
@@ -51,6 +51,7 @@ class _SelfieScreenState extends State<SelfieScreen> {
 
   Future<void> _takePicture() async {
     setState(() {
+      unVerified = false;
       takePicture = true;
       _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
         setState(() {
@@ -64,6 +65,7 @@ class _SelfieScreenState extends State<SelfieScreen> {
         });
       });
     });
+    reTakeCount++;
   }
 
   Future<void> capturePicture() async {
@@ -72,7 +74,7 @@ class _SelfieScreenState extends State<SelfieScreen> {
     setState(() {
       _picture = result;
       takePicture = false;
-      verified = true;
+      unVerified = true;
       _timer.cancel();
     });
   }
@@ -97,7 +99,6 @@ class _SelfieScreenState extends State<SelfieScreen> {
         alignment: Alignment.center,
         children: [
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -144,38 +145,69 @@ class _SelfieScreenState extends State<SelfieScreen> {
                       ]),
                     )
                   : _picture != null
-                      ? Center(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.file(
-                              File(_picture!.path),
+                      ? Padding(
+                          padding: EdgeInsets.only(top: 5.h),
+                          child: Center(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                File(_picture!.path),
+                                width: 60.w,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Padding(
+                          padding: EdgeInsets.only(top: 5.h),
+                          child: Center(
+                            child: Image.asset(
+                              "assets/placeholder.png",
                               width: 60.w,
                               fit: BoxFit.contain,
                             ),
                           ),
-                        )
-                      : Center(
-                          child: Image.asset(
-                            "assets/placeholder.png",
-                            width: 50.w,
-                            fit: BoxFit.contain,
-                          ),
                         ),
               if (!takePicture) ...[
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
-                  child: TextWidget(
-                    fontWeight: FontWeight.w700,
-                    value: verified
-                        ? "Face Verified Successfully"
-                        : "Initiate face verification for quick attendance Process.",
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 1.h),
+                  child: Column(
+                    children: [
+                      TextWidget(
+                        fontWeight: FontWeight.w700,
+                        value: unVerified
+                            ? "We couldnt recognize your face"
+                            : "Initiate face verification for quick attendance Process.",
+                      ),
+                      if (reTakeCount > 1) ...[
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 1.h),
+                          child: TextWidget(
+                            fontSize: 3.mm,
+                            fontWeight: FontWeight.w400,
+                            value:
+                                "Don’t Worry, your request for Attendance has been sent to the Head for approval!",
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 1.h),
+                          child: TextWidget(
+                            fontSize: 3.mm,
+                            fontWeight: FontWeight.w400,
+                            value:
+                                "Go to Dashboard and continue with your tasks for the day once your attendance is approved.",
+                          ),
+                        )
+                      ]
+                    ],
                   ),
                 ),
               ]
               // Add some space between text and button
             ],
           ),
-          if (!takePicture && !verified) ...[
+          if (!takePicture && !unVerified) ...[
             Positioned(
               bottom: 0,
               left: 0,
@@ -183,6 +215,19 @@ class _SelfieScreenState extends State<SelfieScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 1.h),
                 child: TextButtonWidget(onClick: () {}),
+              ),
+            ),
+          ],
+          if (unVerified && reTakeCount <= 1) ...[
+            Positioned(
+              bottom: 17.h,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 1.h),
+                child: RetakeButton(
+                  onClick: () async {
+                    await _takePicture();
+                  },
+                ),
               ),
             ),
           ]
@@ -204,7 +249,16 @@ class _SelfieScreenState extends State<SelfieScreen> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
                     child: CaptureButton(
-                      title: _picture != null ? "Submit" : "Verify",
+                      title: unVerified
+                          ? reTakeCount > 1
+                              ? "Go to Dashboard"
+                              : "Submit"
+                          : "Verify",
+                      enabled: unVerified
+                          ? reTakeCount > 1
+                              ? true
+                              : false
+                          : true,
                       onClick: () async {
                         await _takePicture();
                       },

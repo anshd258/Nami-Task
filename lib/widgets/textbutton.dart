@@ -12,6 +12,7 @@ class TextButtonWidget extends StatelessWidget {
           onClick.call();
         },
         child: const TextWidget(
+          underLine: true,
           value: "Privacy Notice",
           color: Color.fromRGBO(95, 105, 199, 1),
         ));

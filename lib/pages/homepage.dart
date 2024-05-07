@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nami_app/pages/cannotverify.dart';
 import 'package:nami_app/pages/selfiepage.dart';
 import 'package:nami_app/widgets/capturebutton.dart';
 import 'package:nami_app/widgets/textwidget.dart';
@@ -32,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               child: CaptureButton(
+                title: "Task - 1 (Verified)",
                 onClick: () {
                   Navigator.pushNamed(context, SelfieScreen.selfieScreenRoute);
                 },
@@ -41,6 +43,17 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               child: CaptureButton(
+                title: "Task - 1 (UnVerified)",
+                onClick: () {
+                  Navigator.pushNamed(context, CannotVerify.cannotVerify);
+                },
+              ),
+            ),
+            Container(
+              width: 100.w,
+              margin: EdgeInsets.symmetric(horizontal: 10.w),
+              child: CaptureButton(
+                title: "Task - 2",
                 onClick: () {},
               ),
             )
