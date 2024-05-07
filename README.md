@@ -7,10 +7,11 @@ Nami Flutter App
 To start the app write flutter 
 ``` fluttern run ```
 
-### PRoject Strcture
+### Project Strcture
 
 - assets:- assets contain the assets of the app like place holder image and the aligner image overlay;
-#### Lib
+
+### Lib
 Lib contains all the dart code of this app which have following folders:-
 
 - widgets :- widgets contains all the resusable widgets of the app
