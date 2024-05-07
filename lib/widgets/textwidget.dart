@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+    //* used to make a global text widget with font sans expanded with configrations 
 class TextWidget extends StatelessWidget {
   final FontWeight? fontWeight;
   final Color? color;
-  final bool underLine;
+  final bool underLine; //? used for underlining the button
   final String value;
   const TextWidget(
       {super.key,

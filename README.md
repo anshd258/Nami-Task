@@ -1,16 +1,26 @@
-# nami_app
+# Nami Flutter Task
 
-A new Flutter project.
+Nami Flutter App
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To start the app write flutter 
+``` fluttern run ```
 
-A few resources to get you started if this is your first Flutter project:
+### PRoject Strcture
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- assets:- assets contain the assets of the app like place holder image and the aligner image overlay;
+#### Lib
+Lib contains all the dart code of this app which have following folders:-
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- widgets :- widgets contains all the resusable widgets of the app
+
+- pages :- contains the pages of the app like home
+
+- core :-  contains the pages cre functions and classes of the app like app on generate routing table
+
+- theme.dart :- contains the theame of the app
+
+- main.dart :- entry point of the app which also initializes the cameras
+
+

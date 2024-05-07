@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:nami_app/widgets/textwidget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+
+    //* basic outline button to use in app (used it in retake button)
 class RetakeButton extends StatelessWidget {
   final Function onClick;
-  const RetakeButton({Key? key, required this.onClick}) : super(key: key);
+  final String title;
+  const RetakeButton({Key? key, required this.onClick, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +34,9 @@ class RetakeButton extends StatelessWidget {
                 color: Color.fromRGBO(95, 105, 199, 1),
               ),
             ),
-            const TextWidget(
-              value: "Re-Take",
-              color: Color.fromRGBO(95, 105, 199, 1),
+            TextWidget(
+              value: title,
+              color: const Color.fromRGBO(95, 105, 199, 1),
             ),
           ],
         ));

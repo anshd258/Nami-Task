@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nami_app/widgets/textwidget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+    //* basic elevated button to use in app (used in verify , submit and others)
 class CaptureButton extends StatelessWidget {
   final Function onClick;
   final String title;
-  final bool enabled;
+  final bool enabled; //? used for enabliing disabling the elevated button
   const CaptureButton({Key? key, required this.onClick, this.enabled = true, required this.title});
 
   @override

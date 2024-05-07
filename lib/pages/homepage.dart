@@ -6,6 +6,7 @@ import 'package:nami_app/widgets/capturebutton.dart';
 import 'package:nami_app/widgets/textwidget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+    //* home page of the app
 class HomeScreen extends StatefulWidget {
   static const homeScreenRoute = "/";
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            //! for going to the verified selfie page 
             Container(
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 10.w),
@@ -39,6 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
+
+           //! for going to the unveerified selfie page
             Container(
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 10.w),
@@ -49,14 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            Container(
-              width: 100.w,
-              margin: EdgeInsets.symmetric(horizontal: 10.w),
-              child: CaptureButton(
-                title: "Task - 2",
-                onClick: () {},
-              ),
-            )
+          
           ],
         ),
       ),
