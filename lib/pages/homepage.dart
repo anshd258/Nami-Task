@@ -39,16 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
       print("message from OVERLAY: $message");
       setState(() {
         latestMessageFromOverlay = bool.parse(message.toString());
-        if(latestMessageFromOverlay != null && latestMessageFromOverlay!){
-          SendPort? overlayport =  IsolateNameServer.lookupPortByName(_kPortNameOverlay);
-          if(overlayport != null){
-
-           Future.delayed(Duration(seconds: 2), () =>  overlayport.send(true),);
+        if (latestMessageFromOverlay != null && latestMessageFromOverlay!) {
+          SendPort? overlayport =
+              IsolateNameServer.lookupPortByName(_kPortNameOverlay);
+          if (overlayport != null) {
+            Future.delayed(
+              Duration(seconds: 2),
+              () => overlayport.send(true),
+            );
           }
         }
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,14 +90,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
+            //! button for calling the overlay
             Container(
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               child: CaptureButton(
                 title: "Task - 2 (Overlay)",
                 onClick: () async {
-                  if (await FlutterOverlayWindow.isActive()) return;
+                  if (await FlutterOverlayWindow.isActive())
+                    return; //?checking if overlay is already active or not
                   await FlutterOverlayWindow.showOverlay(
+                    //* calling the overlay
                     enableDrag: true,
                     overlayTitle: "Nami Ovverlay",
                     overlayContent: 'Overlay Enabled',

@@ -16,23 +16,24 @@ class NamiOverlay extends StatefulWidget {
 }
 
 class _NamiOverlayState extends State<NamiOverlay> {
-  static const String _kPortNameOverlay = 'OVERLAY';
-  static const String _kPortNameHome = 'UI';
-  bool _loading = false;
-  final _receivePort = ReceivePort();
-  SendPort? homePort;
+  static const String _kPortNameOverlay = 'OVERLAY'; // !isolate overlay name
+  static const String _kPortNameHome = 'UI'; // !isolate home name
+  bool _loading = false; //! for loading screen
+  final _receivePort = ReceivePort(); //!reciever port for overlay to recieve mesasages for overlay
+
+  SendPort? homePort; //! send port overlay to send messages to the overlay
   bool? messageFromOverlay;
 
   @override
   void initState() {
     super.initState();
     if (homePort != null) return;
-    final res = IsolateNameServer.registerPortWithName(
+    final res = IsolateNameServer.registerPortWithName( //! registering the isolate of overlay
       _receivePort.sendPort,
       _kPortNameOverlay,
     );
     print("$res : HOME");
-    _receivePort.listen((message) {
+    _receivePort.listen((message) { //! listeming to messages comiing from ui main thread
       print("message from UI: $message");
       setState(() {
         messageFromOverlay = bool.parse(message.toString());
@@ -46,7 +47,7 @@ class _NamiOverlayState extends State<NamiOverlay> {
         });
          Future.delayed(
               Duration(milliseconds: 500),
-              () async => await FlutterOverlayWindow.closeOverlay(),
+              () async => await FlutterOverlayWindow.closeOverlay(), //! closing ovelay
             );
       });
     });

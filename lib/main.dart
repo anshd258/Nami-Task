@@ -7,6 +7,7 @@ import 'package:nami_app/pages/homepage.dart';
 import 'package:nami_app/theme.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+//! another thread (isolate for overlay)
 @pragma("vm:entry-point")
 void overlayMain() {
   WidgetsFlutterBinding.ensureInitialized();
