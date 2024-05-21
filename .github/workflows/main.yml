@@ -9,8 +9,11 @@ on:
       - master
 
 jobs:
+  
   build:
     name: build partner apk
+    permissions:
+      contents: write
     runs-on: windows-latest
 
     steps:
@@ -58,3 +61,5 @@ jobs:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
           tag: v1.0.${{github.run_number}} 
           commit: master
+          body: |
+            Release notes for v1.0.${{ github.run_number }}
