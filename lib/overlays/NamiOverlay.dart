@@ -46,7 +46,7 @@ class _NamiOverlayState extends State<NamiOverlay> {
           }
         });
          Future.delayed(
-              Duration(milliseconds: 500),
+              const Duration(milliseconds: 500),
               () async => await FlutterOverlayWindow.closeOverlay(), //! closing ovelay
             );
       });
@@ -60,16 +60,16 @@ class _NamiOverlayState extends State<NamiOverlay> {
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
             decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                   blurRadius: 5,
                   color: Colors.black38,
                   spreadRadius: 1,
                   offset: Offset(1, 1))
             ], borderRadius: BorderRadius.circular(8), color: Colors.white),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
               child: Stack(
                 children: [
                   Column(
@@ -77,24 +77,24 @@ class _NamiOverlayState extends State<NamiOverlay> {
                       Image.asset(
                         "assets/rafiki.png",
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
                         child: TextWidget(
                           value: "Reminder",
                           fontSize: 25,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      TextWidget(
+                      const TextWidget(
                         value: "This Request needs to be completed soon",
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         margin:
-                            EdgeInsets.symmetric(vertical: 30, horizontal: 8),
+                            const EdgeInsets.symmetric(vertical: 30, horizontal: 8),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
@@ -111,8 +111,8 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                       Icons.food_bank_rounded,
                                       color: Colors.indigoAccent.shade400,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(
                                           horizontal: 5),
                                       child: TextWidget(
                                         value: "Rajesh",
@@ -147,10 +147,10 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                 ),
                                 Chip(
                                     visualDensity: VisualDensity.compact,
-                                    shape: StadiumBorder(),
+                                    shape: const StadiumBorder(),
                                     side: BorderSide.none,
                                     backgroundColor: Colors.red.shade100,
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: 2, vertical: 1),
                                     label: Row(
                                       children: [
@@ -180,7 +180,7 @@ class _NamiOverlayState extends State<NamiOverlay> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                TextWidget(
+                                const TextWidget(
                                   value: 'Routine Cleaning',
                                   color: Color(0xFF1A0A02),
                                   fontSize: 12,
@@ -188,16 +188,16 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                 ),
                                 Chip(
                                   visualDensity: VisualDensity.compact,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                     horizontal: 5,
                                   ),
-                                  labelPadding: EdgeInsets.symmetric(
+                                  labelPadding: const EdgeInsets.symmetric(
                                       horizontal: 5, vertical: 1),
-                                  shape: StadiumBorder(),
+                                  shape: const StadiumBorder(),
                                   side: BorderSide.none,
                                   backgroundColor:
-                                      Color(0xFF5E69C6).withOpacity(0.2),
-                                  label: TextWidget(
+                                      const Color(0xFF5E69C6).withOpacity(0.2),
+                                  label: const TextWidget(
                                     value: 'Internal Task',
                                     color: Color(0xFF5E69C6),
                                     fontSize: 10,
@@ -206,8 +206,8 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 5),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -221,7 +221,7 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                         size: 17,
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(
+                                        padding: EdgeInsets.symmetric(
                                             horizontal: 5),
                                         child: TextWidget(
                                           value: ' 21 Jul 2024 | 03:00 am',
@@ -241,15 +241,15 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 5),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                         horizontal: 5),
                                     child: TextWidget(
                                       value: 'From:Pantry',
@@ -280,21 +280,21 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                   await FlutterOverlayWindow.closeOverlay();
                                 },
                                 style: OutlinedButton.styleFrom(
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                       color:
-                                          const Color.fromRGBO(95, 105, 199, 1),
+                                          Color.fromRGBO(95, 105, 199, 1),
                                       width: 1),
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 16, horizontal: 16),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                child: TextWidget(
+                                child: const TextWidget(
                                   value: "Dismiss",
                                   fontSize: 16,
-                                  color: const Color.fromRGBO(95, 105, 199, 1),
+                                  color: Color.fromRGBO(95, 105, 199, 1),
                                 ),
                               ),
                             ),
@@ -314,14 +314,14 @@ class _NamiOverlayState extends State<NamiOverlay> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           vertical: 16, horizontal: 16),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       backgroundColor: const Color.fromRGBO(
                                           95, 105, 199, 1)),
-                                  child: TextWidget(
+                                  child: const TextWidget(
                                     value: "Notify Staff",
                                     fontSize: 16,
                                     color: Colors.white,
@@ -350,11 +350,11 @@ class _NamiOverlayState extends State<NamiOverlay> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.grey.withOpacity(0.2)),
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             )

@@ -18,7 +18,7 @@ class TextButtonWidget extends StatelessWidget {
         child:  TextWidget(
           underLine: true,
           value: title,
-          color: Color.fromRGBO(95, 105, 199, 1),
+          color: const Color.fromRGBO(95, 105, 199, 1),
         ));
   }
 }

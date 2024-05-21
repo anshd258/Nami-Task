@@ -17,8 +17,8 @@ class RetakeButton extends StatelessWidget {
           onClick.call();
         },
         style: OutlinedButton.styleFrom(
-          side: BorderSide(
-              color: const Color.fromRGBO(95, 105, 199, 1), width: 1),
+          side: const BorderSide(
+              color: Color.fromRGBO(95, 105, 199, 1), width: 1),
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 5.w),
           shape: RoundedRectangleBorder(

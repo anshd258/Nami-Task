@@ -16,7 +16,7 @@ class _ConfirmationOverlayState extends State<ConfirmationOverlay> {
   void initState() {
     super.initState();
      Future.delayed(
-              Duration(seconds: 1),
+              const Duration(seconds: 1),
               () async => await FlutterOverlayWindow.closeOverlay(),
             );
     
@@ -29,16 +29,16 @@ class _ConfirmationOverlayState extends State<ConfirmationOverlay> {
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
             decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                   blurRadius: 5,
                   color: Colors.black38,
                   spreadRadius: 1,
                   offset: Offset(1, 1))
             ], borderRadius: BorderRadius.circular(8), color: Colors.white),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
               child: Stack(
                 children: [
                   Column(
@@ -46,15 +46,15 @@ class _ConfirmationOverlayState extends State<ConfirmationOverlay> {
                       Image.asset(
                         "assets/rafiki.png",
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
                         child: TextWidget(
                           value: "Notified the staff",
                           fontSize: 25,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      TextWidget(
+                      const TextWidget(
                         value: "we have notified your staff to take quick action for this task",
                         fontSize: 12,
                         fontWeight: FontWeight.w500,

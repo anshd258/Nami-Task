@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               IsolateNameServer.lookupPortByName(_kPortNameOverlay);
           if (overlayport != null) {
             Future.delayed(
-              Duration(seconds: 2),
+              const Duration(seconds: 2),
               () => overlayport.send(true),
             );
           }
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     flag: OverlayFlag.defaultFlag,
                     visibility: NotificationVisibility.visibilityPublic,
                     positionGravity: PositionGravity.auto,
-                    startPosition: OverlayPosition(0.5, 0.5),
+                    startPosition: const OverlayPosition(0.5, 0.5),
                     height: (MediaQuery.of(context).size.height * 3).toInt(),
                     width: (MediaQuery.of(context).size.width * 3.5).toInt(),
                   );

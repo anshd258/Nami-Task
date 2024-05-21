@@ -151,7 +151,7 @@ class _CannotVerifyState extends State<CannotVerify> {
                                 currentValue: _progressValue,
                                 size: 2.h,
                                 maxValue: 1,
-                                progressGradient: LinearGradient(colors: [
+                                progressGradient: const LinearGradient(colors: [
                                   Color.fromRGBO(178, 185, 255, 1),
                                   Color.fromRGBO(95, 105, 199, 1)
                                 ]),

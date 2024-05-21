@@ -24,7 +24,7 @@ class CaptureButton extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             backgroundColor: enabled
                 ? const Color.fromRGBO(95, 105, 199, 1)
-                : Color.fromRGBO(191, 191, 191, 1)),
+                : const Color.fromRGBO(191, 191, 191, 1)),
         child:  TextWidget(
           value: title,
           color: Colors.white,
