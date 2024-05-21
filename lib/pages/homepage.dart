@@ -1,3 +1,6 @@
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
@@ -17,6 +20,35 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  static const String _kPortNameOverlay = 'OVERLAY';
+  static const String _kPortNameHome = 'UI';
+  final _receivePort = ReceivePort();
+  SendPort? homePort;
+  bool? latestMessageFromOverlay;
+
+  @override
+  void initState() {
+    super.initState();
+    if (homePort != null) return;
+    final res = IsolateNameServer.registerPortWithName(
+      _receivePort.sendPort,
+      _kPortNameHome,
+    );
+    print("$res: OVERLAY");
+    _receivePort.listen((message) {
+      print("message from OVERLAY: $message");
+      setState(() {
+        latestMessageFromOverlay = bool.parse(message.toString());
+        if(latestMessageFromOverlay != null && latestMessageFromOverlay!){
+          SendPort? overlayport =  IsolateNameServer.lookupPortByName(_kPortNameOverlay);
+          if(overlayport != null){
+
+           Future.delayed(Duration(seconds: 2), () =>  overlayport.send(true),);
+          }
+        }
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     visibility: NotificationVisibility.visibilityPublic,
                     positionGravity: PositionGravity.auto,
                     startPosition: OverlayPosition(0.5, 0.5),
-                    height: (MediaQuery.of(context).size.height * 2.8).toInt(),
+                    height: (MediaQuery.of(context).size.height * 3).toInt(),
                     width: (MediaQuery.of(context).size.width * 3.5).toInt(),
                   );
                 },
